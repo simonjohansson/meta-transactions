@@ -20,13 +20,16 @@ export interface GreeterInterface extends utils.Interface {
   contractName: "Greeter";
   functions: {
     "greet()": FunctionFragment;
+    "owner()": FunctionFragment;
     "setGreeting(string)": FunctionFragment;
   };
 
   encodeFunctionData(functionFragment: "greet", values?: undefined): string;
+  encodeFunctionData(functionFragment: "owner", values?: undefined): string;
   encodeFunctionData(functionFragment: "setGreeting", values: [string]): string;
 
   decodeFunctionResult(functionFragment: "greet", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "setGreeting",
     data: BytesLike
@@ -65,6 +68,8 @@ export interface Greeter extends BaseContract {
   functions: {
     greet(overrides?: CallOverrides): Promise<[string]>;
 
+    owner(overrides?: CallOverrides): Promise<[string]>;
+
     setGreeting(
       _greeting: string,
       overrides?: Overrides & { from?: string | Promise<string> }
@@ -72,6 +77,8 @@ export interface Greeter extends BaseContract {
   };
 
   greet(overrides?: CallOverrides): Promise<string>;
+
+  owner(overrides?: CallOverrides): Promise<string>;
 
   setGreeting(
     _greeting: string,
@@ -81,6 +88,8 @@ export interface Greeter extends BaseContract {
   callStatic: {
     greet(overrides?: CallOverrides): Promise<string>;
 
+    owner(overrides?: CallOverrides): Promise<string>;
+
     setGreeting(_greeting: string, overrides?: CallOverrides): Promise<void>;
   };
 
@@ -88,6 +97,8 @@ export interface Greeter extends BaseContract {
 
   estimateGas: {
     greet(overrides?: CallOverrides): Promise<BigNumber>;
+
+    owner(overrides?: CallOverrides): Promise<BigNumber>;
 
     setGreeting(
       _greeting: string,
@@ -97,6 +108,8 @@ export interface Greeter extends BaseContract {
 
   populateTransaction: {
     greet(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     setGreeting(
       _greeting: string,

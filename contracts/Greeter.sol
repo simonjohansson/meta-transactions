@@ -5,9 +5,12 @@ import "hardhat/console.sol";
 
 contract Greeter {
     string private greeting;
+    address public owner;
 
     constructor(string memory _greeting) {
         console.log("Deploying a Greeter with greeting:", _greeting);
+        console.log("Owner is:", msg.sender);
+        owner = msg.sender;
         greeting = _greeting;
     }
 
